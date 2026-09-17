@@ -16,7 +16,16 @@ from __future__ import annotations
 from pathlib import Path
 
 
-VERSION = "6.1.3"
+# airunner-common is already live on PyPI at 6.1.3, published from
+# Capsize-Games/airunner's own shared/ (this repository's origin, before
+# extraction). This continues that version lineage rather than
+# restarting at 0.1.0 like a genuinely new package would, since existing
+# consumers (airunner-eval, airunner-tts-vendor, and this repository's
+# own root/services/native setup.py files) already pin
+# "airunner-common~=6.1" -- a version series break would need every one
+# of those pins bumped in lockstep, defeating the point of extracting an
+# independently-versioned foundation package in the first place.
+VERSION = "6.1.4"
 
 # Supply-chain hardening (issue #2036). This was a hash-pinned GitHub archive
 # URL, but PyPI rejects any distribution carrying a PEP 440 direct reference
@@ -40,19 +49,16 @@ LICENSE_CLASSIFIERS = [
     "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
 ]
 
-# The shared package lives at <repo>/shared/airunner_common, so the repo root
-# is two parents up (``shared`` and the repo root itself) in a checkout. The
-# published sdist carries its own README.md at the sdist root (parents[1],
-# via shared/MANIFEST.in), and an installed wheel has no README at all, so
-# fall back instead of crashing at import time (issue #2061).
+# This package lives at <repo>/airunner_common, so the repo root is one
+# parent up in a checkout -- and the sdist carries the same layout (its
+# root is the package's own repo root, via MANIFEST.in), so the same
+# single candidate covers both cases. An installed wheel has no README at
+# all, so fall back instead of crashing at import time (issue #2061).
 def _resolve_readme() -> str:
     module_dir = Path(__file__).resolve().parent
-    for candidate in (
-        module_dir.parents[2] / "README.md",  # repo checkout
-        module_dir.parents[1] / "README.md",  # sdist root
-    ):
-        if candidate.is_file():
-            return candidate.read_text(encoding="utf-8")
+    candidate = module_dir.parents[0] / "README.md"
+    if candidate.is_file():
+        return candidate.read_text(encoding="utf-8")
     # Installed wheel: no README ships with the runtime package. The wheel's
     # long_description was already baked from the sdist README at build time,
     # so a short placeholder here is only a defensive fallback.

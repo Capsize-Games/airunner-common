@@ -1,0 +1,11 @@
+[build-system]
+# setup.py imports its own package for metadata (VERSION,
+# FACEHUGGERSHIELD_REQUIREMENT, LICENSE_CLASSIFIERS, README), which is
+# fine here -- unlike the sibling packages in the source repository,
+# this one doesn't need build isolation from itself. No torch
+# dependency either, so no upper bound needed on setuptools.
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
