@@ -9,6 +9,9 @@ agree across the desktop GUI (``src/``), the headless service daemon
 * ``dev_build_token`` — stale-daemon detection token
 * ``linux_bundle_layout`` — relocatable Linux bundle path helpers
 * ``contract_enums`` — cross-process and cross-layer contracts
+* ``llm_request`` / ``llm_response`` — shared LLM payload fields (#2188, #2221)
+* ``generation_presets`` — the per-action generation table both
+  ``LLMRequest.for_action()`` implementations call (#2225)
 * ``contract_version`` — the desktop/daemon wire contract's own version,
   independent of either distribution's package version (issue #2192)
 * ``logging_utils`` — shared logging configuration helpers
@@ -24,7 +27,10 @@ __all__ = [
     "contract_enums",
     "contract_version",
     "dev_build_token",
+    "generation_presets",
     "linux_bundle_layout",
+    "llm_request",
+    "llm_response",
     "logging_utils",
     "settings",
     "startup_env",
