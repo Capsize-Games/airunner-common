@@ -21,6 +21,8 @@ depends on this one, and this one depends on none of them.
   cross a package boundary belong here, not duplicated in a consumer)
 - `contract_version` — the desktop/daemon wire contract's own version,
   independent of any single distribution's package version
+- `llm_response` — the `LLMResponse` payload streamed across the
+  desktop/daemon boundary (issue #2188 in the source repository)
 - `logging_utils` / `get_logger` — shared logging configuration and the
   one `Logger` implementation both the GUI and services layers use
 
