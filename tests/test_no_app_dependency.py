@@ -41,6 +41,7 @@ def test_every_module_present():
         "dev_build_token.py",
         "get_logger.py",
         "linux_bundle_layout.py",
+        "llm_response.py",
         "logging_utils.py",
         "package_metadata.py",
         "settings.py",
