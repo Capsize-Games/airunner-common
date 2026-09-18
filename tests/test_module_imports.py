@@ -18,6 +18,7 @@ _SUBMODULES = [
     "airunner_common.contract_enums",
     "airunner_common.contract_version",
     "airunner_common.dev_build_token",
+    "airunner_common.generation_presets",
     "airunner_common.get_logger",
     "airunner_common.linux_bundle_layout",
     "airunner_common.llm_request",
