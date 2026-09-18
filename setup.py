@@ -19,7 +19,7 @@ from pathlib import Path
 
 from setuptools import setup
 
-VERSION = "6.1.5"
+VERSION = "6.1.6"
 
 # The project is GPL-3.0-only, matching the source application. Mirrored
 # from airunner_common/package_metadata.py.

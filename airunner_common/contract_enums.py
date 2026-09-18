@@ -196,6 +196,30 @@ class Mode(Enum):
     MODEL_MANAGER = "Model Manager"
 
 
+class MessageRole(str, Enum):
+    """LLM message roles, matching llama_cloud.MessageRole values.
+
+    Values match llama_cloud exactly (including DEVELOPER, FUNCTION,
+    CHATBOT and MODEL) so wire/serialization compatibility is preserved
+    without importing the llama_cloud SDK on either the GUI or the
+    daemon path. Both distributions carried their own byte-identical
+    ``(str, Enum)`` copy before this (``airunner.enums`` and
+    ``airunner_services.runtimes.contracts``); this is the single
+    shared definition they now re-export, matching the
+    ``AvailableLanguage``/``LLMActionType`` precedent (issues #2197,
+    #2223, #2221).
+    """
+
+    SYSTEM = "system"
+    DEVELOPER = "developer"
+    USER = "user"
+    ASSISTANT = "assistant"
+    FUNCTION = "function"
+    TOOL = "tool"
+    CHATBOT = "chatbot"
+    MODEL = "model"
+
+
 class LLMActionType(Enum):
     """LLM action types used by service and GUI workflows."""
 
@@ -385,6 +409,7 @@ __all__ = [
     "GeneratorSection",
     "ImageGenerator",
     "LLMActionType",
+    "MessageRole",
     "Mode",
     "ModelService",
     "ModelStatus",

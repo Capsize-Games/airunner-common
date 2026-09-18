@@ -20,6 +20,7 @@ _SUBMODULES = [
     "airunner_common.dev_build_token",
     "airunner_common.get_logger",
     "airunner_common.linux_bundle_layout",
+    "airunner_common.llm_request",
     "airunner_common.llm_response",
     "airunner_common.logging_utils",
     "airunner_common.package_metadata",

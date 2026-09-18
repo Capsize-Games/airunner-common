@@ -25,7 +25,7 @@ from pathlib import Path
 # "airunner-common~=6.1" -- a version series break would need every one
 # of those pins bumped in lockstep, defeating the point of extracting an
 # independently-versioned foundation package in the first place.
-VERSION = "6.1.5"
+VERSION = "6.1.6"
 
 # Supply-chain hardening (issue #2036). This was a hash-pinned GitHub archive
 # URL, but PyPI rejects any distribution carrying a PEP 440 direct reference
