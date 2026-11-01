@@ -19,7 +19,7 @@ from pathlib import Path
 
 from setuptools import setup
 
-VERSION = "6.1.7"
+VERSION = "6.1.8"
 
 # The project is GPL-3.0-only, matching the source application. Mirrored
 # from airunner_common/package_metadata.py.
@@ -27,9 +27,8 @@ LICENSE_CLASSIFIERS = [
     "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
 ]
 
-# Supply-chain hardening; see airunner_common/package_metadata.py for the
-# full rationale (PyPI rejects direct references, so depend on a real
-# published release by version instead of a hash-pinned archive URL).
+# Optional compatibility pin for consumers that explicitly request the
+# legacy-shield extra. Common runtime code does not import or activate it.
 FACEHUGGERSHIELD_REQUIREMENT = "facehuggershield==1.0.0"
 
 README = (Path(__file__).resolve().parent / "README.md").read_text(
@@ -54,11 +53,11 @@ setup(
     python_requires=">=3.13.3",
     install_requires=[
         "python-dotenv==1.2.2",
-        FACEHUGGERSHIELD_REQUIREMENT,
     ],
     extras_require={
         "development": DEVELOPMENT_REQUIREMENTS,
         "dev": DEVELOPMENT_REQUIREMENTS,
+        "legacy-shield": [FACEHUGGERSHIELD_REQUIREMENT],
     },
     include_package_data=True,
 )
