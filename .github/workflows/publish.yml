@@ -1,24 +1,26 @@
 name: Publish to PyPI
 
 on:
-  release:
-    types: [published]
   workflow_dispatch:
+    inputs:
+      publish_pypi:
+        description: Publish this source revision to PyPI
+        required: true
+        type: boolean
+        default: false
 
 permissions:
   contents: read
-  # Required for PyPI Trusted Publishing (OIDC): no stored API token
-  # needed anywhere. See https://docs.pypi.org/trusted-publishers/
-  # for the one-time PyPI-side setup this depends on. airunner-common
-  # is already live on PyPI (published from the source repository
-  # before this extraction); this adds an additional trusted publisher
-  # for this repository rather than replacing anything.
-  id-token: write
 
 jobs:
   build-and-publish:
+    if: github.event_name == 'workflow_dispatch' && inputs.publish_pypi == true
     runs-on: ubuntu-latest
     environment: pypi
+    permissions:
+      contents: read
+      # Required for PyPI Trusted Publishing (OIDC); no stored API token.
+      id-token: write
     steps:
       - uses: actions/checkout@v4
 
