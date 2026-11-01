@@ -1,9 +1,7 @@
 [build-system]
-# setup.py imports its own package for metadata (VERSION,
-# FACEHUGGERSHIELD_REQUIREMENT, LICENSE_CLASSIFIERS, README), which is
-# fine here -- unlike the sibling packages in the source repository,
-# this one doesn't need build isolation from itself. No torch
-# dependency either, so no upper bound needed on setuptools.
+# setup.py mirrors the package metadata constants instead of importing the
+# runtime package under build isolation. README is read from the source tree.
+# No torch dependency is required, so setuptools needs no project-specific cap.
 requires = ["setuptools>=68", "wheel"]
 build-backend = "setuptools.build_meta"
 

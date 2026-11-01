@@ -29,15 +29,25 @@ depends on this one, and this one depends on none of them.
 Nothing here imports from `airunner`, `airunner_services` or
 `airunner_native`, so all three can depend on it without a cycle.
 
+## Optional legacy Shield compatibility
+
+The default package installation does not require FacehuggerShield. Consumers
+that explicitly need the historical dependency can request the
+`legacy-shield` extra, which pins `facehuggershield==1.0.0`. That distribution
+is currently paused or yanked on the configured public indexes, so this extra
+requires a reviewed source that provides the pinned version. The extra only
+installs the dependency; it does not activate it. AIRunner-specific activation
+remains the consuming application's responsibility.
+
 ## Versioning
 
-Already live on PyPI as [`airunner-common`](https://pypi.org/project/airunner-common/),
-published from the source repository's own `shared/` before this
-extraction. This repository continues that version series (starting at
-6.1.4) rather than restarting at 0.1.0, since existing consumers
-(`airunner-eval`, `airunner-tts-vendor`, and the source repository's own
-`airunner`/`airunner-services`/`airunner-native`) already pin
-`airunner-common~=6.1`.
+The [`airunner-common`](https://pypi.org/project/airunner-common/) project is
+registered on PyPI. As of 2026-11-01, its published files are yanked and
+distribution is paused. This source change does not resume publication.
+
+This repository continues the version series first published from the source
+repository's `shared/` directory, starting at 6.1.4. It does not restart at
+0.1.0 because existing consumers already pin `airunner-common~=6.1`.
 
 ## Provenance
 
